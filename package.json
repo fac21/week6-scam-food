@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "test": "cypress open",
-    "dev": "nodemone server.js",
+    "dev": "nodemon server.js",
     "db:setup": "./scripts/db:setup",
     "db:build": "./scripts/db:build"
   },
