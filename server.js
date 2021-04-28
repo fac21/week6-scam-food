@@ -1,10 +1,12 @@
 const express = require("express");
-const staticHandler = express.static("public");
-
 const server = express();
+
+const staticHandler = express.static("public");
 server.use(staticHandler);
 
+const homePage = require("./src/handlers/index");
 
+server.get("/", homePage.getHomepage)
 
 
 
