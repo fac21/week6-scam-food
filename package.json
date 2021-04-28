@@ -1,0 +1,27 @@
+{
+  "name": "week6-scam-food",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "cypress open",
+    "dev": "nodemone server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fac21/week6-scam-food.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fac21/week6-scam-food/issues"
+  },
+  "homepage": "https://github.com/fac21/week6-scam-food#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "cypress": "^7.2.0"
+  }
+}
