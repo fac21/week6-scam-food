@@ -1,0 +1,15 @@
+#! /bin/bash              
+# special comment tell computer what to do
+
+# stop script when an error occurs
+set -e
+
+psql -q -c "CREATE USER exampleuser SUPERUSER PASSWORD '123'"
+# shows what you need to know
+echo "Created Postgres user 'exampleuser'"
+
+psql -q -c "CREATE DATABASE example WITH OWNER exampleuser"
+echo "Created Postgres database 'example'"
+
+cp -r example.env .env
+echo "Created .env containing DATABASE_URL"
