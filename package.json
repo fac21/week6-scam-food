@@ -6,7 +6,9 @@
   "scripts": {
     "start": "node server.js",
     "test": "cypress open",
-    "dev": "nodemone server.js"
+    "dev": "nodemone server.js",
+    "db:setup": "./scripts/db:setup",
+    "db:build": "./scripts/db:build"
   },
   "repository": {
     "type": "git",
