@@ -21,7 +21,7 @@ CREATE TABLE sessions (
 
 CREATE TABLE recommendations (
     id SERIAL PRIMARY KEY, 
-    recommendations TEXT VARCHAR(255) NOT NULL,
+    recommendations TEXT NOT NULL,
     restaurants_id INTEGER REFERENCES restaurants(id),
     user_id INTEGER REFERENCES users(id)
 );

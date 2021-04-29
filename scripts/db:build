@@ -3,6 +3,6 @@
 # stop script when an error occurs
 set -e
 
-psql example -q -f "./src/database/init.sql"
+psql example -q -f "./database/init.sql"
 #Connecting to the file -q (quiet does not print unnecessary stuff) Whatever sql does will be added to database
 echo "Populated database tables"
