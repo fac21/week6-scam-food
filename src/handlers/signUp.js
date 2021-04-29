@@ -42,7 +42,7 @@ function post(request, response){
     .then((hashpassword) =>
         model.addNewUser(email, hashpassword, username))
     .then(() => {
-        response.redirect("/")
+        response.redirect("/log-in")
     })
 }
 module.exports = {getSignUp, post}
