@@ -9,10 +9,10 @@ function getHomepage(request, response){
         <a href="/sign-up">
             Sign Up
         </a>
-        <a href="view-posts">
+        <a href="/view-posts">
             View Recommendations
         </a>
-        <a href="add-post">
+        <a href="/add-post">
             Add a Recommendation
         </a>
     </nav>
