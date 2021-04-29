@@ -1,5 +1,8 @@
 const html = require("../components/html")
 const model = require("../../database/model");
+const crypto = require("crypto");
+const bcrypt = require("bcryptjs");
+
 
 function getLogin(request, response){
     const title = 'Log In | FAC Recommendations'
@@ -22,17 +25,52 @@ function getLogin(request, response){
     response.send(html.getReusableHTML(title, logInContent))
 }
 
-function logIn(request, response) {
-   const { email, password } = request.body;
-    model.getUser(email)
-    .then((DBuser) => bcrypt.compare(password, DBuser.hashpassword))
+
+function saveUserSession(user){
+    const sid = crypto.randomBytes(18).toString("base64");
+    console.log(user);
+    return model.createSession(sid, user.email )
+}
+
+
+function verifyUser(email, password) {
+  return model.getUser(email)
+    .then((user) => {
+        return bcrypt.compare(password, user[0].hashpassword)
     .then((match) => {
         if(!match) {
             throw new Error('Password mismatch')
-        } else {
-            respond.send(`<h1>Welcome back ${email}</h1>`)
-        }
+    } else {
+     delete user[0].hashpassword;
+        return user[0];
+            }
+    });
     })
+    
 }
+
+
+
+function logIn(request, response) {
+   const { email, password } = request.body;
+        //if(DBuser.length === 0){
+         //response.redirect("/sign-up")   
+        //response.send(`<p>This ${email} does not have an account. Sign up please.</a></p>`)
+        //} else {
+            verifyUser(email, password)
+            .then(saveUserSession)
+            .then((sid) => {
+            response.cookie("sid", sid, {
+                httpOnly: true,
+                maxAge: 60,
+                signed: true,
+                });
+            })      
+        }
+ 
+
+
+
+
 
 module.exports = {getLogin, logIn}

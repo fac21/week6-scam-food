@@ -22,6 +22,18 @@ function addNewUser(email, hashpassword, name){
   return db.query("INSERT INTO users(email, hashpassword, name) VALUES ($1, $2, $3)", [email, hashpassword, name])
 }
 
+function createSession(sid, email){
+  const INSERT_SESSIONS = `
+  INSERT INTO sessions(sid, email) VALUES ($1, $2)
+  RETURNING sid
+  `;
+  return db.query(INSERT_SESSIONS, [sid, email])
+  .then((result) => {
+    console.log(result.rows[0].sid);
+  });  
+   
+}
+
 function addRecommendation(restaurant, recommendation, user_id){
   db.query(`SELECT restaurants.id FROM restaurants WHERE name='${restaurant}';`)
   .then((table)=> {
@@ -36,7 +48,7 @@ function addRecommendation(restaurant, recommendation, user_id){
   }
 
 
-  function getCookie(request, response){
+function getCookie(request, response){
     const cookies = request.cookies;
     const sid = cookies.sid;
     db.query(`SELECT user_id FROM sessions WHERE id = '${sid}' `)
@@ -46,5 +58,6 @@ function addRecommendation(restaurant, recommendation, user_id){
   }
 
 
-module.exports = { getAllRecommendations, getUser, addNewUser, addRecommendation, getCookie}
+module.exports = { getAllRecommendations, getUser, addNewUser, addRecommendation, createSession, getCookie}
+
 
