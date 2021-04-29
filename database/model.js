@@ -8,6 +8,15 @@ function getAllRecommendations()  {
 
 }
 
+function getUser(email)  {
+  return db.query(`SELECT email, hashpassword FROM users WHERE email = '${email}';`)
+  .then((result) => result.rows)
+  .catch((error) => {
+      console.error(error);
+    });
+
+}
 
 
-module.exports = { getAllRecommendations }
+
+module.exports = { getAllRecommendations, getUser }
