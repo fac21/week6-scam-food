@@ -6,10 +6,13 @@ server.use(staticHandler);
 
 const homePage = require("./src/handlers/index");
 const signUpPage = require("./src/handlers/signUp");
+const addPostPage = require("./src/handlers/viewPost")
 
 server.get("/", homePage.getHomepage)
-
 server.get("/sign-up", signUpPage.getSignUp)
+server.get("/view-posts", addPostPage.getRecommendationPage)
+// server.post("view-posts", addPostPage.addRecommendation)
+
 
  
 const PORT = process.env.PORT || 3000;

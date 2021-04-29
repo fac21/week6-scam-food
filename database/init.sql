@@ -26,6 +26,13 @@ CREATE TABLE recommendations (
     user_id INTEGER REFERENCES users(id)
 );
 
+INSERT INTO users (email, hashpassword, name) VALUES ('jonathon@gmail.com', 'password', 'john');
+
+INSERT INTO restaurants (name) VALUES ('McDonalds');
+
+INSERT INTO recommendations (recommendations, restaurants_id, user_id) VALUES ('Had a great time', 1, 1);
+
+INSERT INTO recommendations (recommendations, restaurants_id, user_id) VALUES ('Super Duper Burgers', 1, 1);
 
 COMMIT;
 
