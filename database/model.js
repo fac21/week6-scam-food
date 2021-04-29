@@ -26,5 +26,17 @@ function addNewUser(email, hashpassword, name){
 }
 
 
-module.exports = { getAllRecommendations, getUser, addNewUser }
+function createSession(sid, email){
+  const INSERT_SESSIONS = `
+  INSERT INTO sessions(sid, email) VALUES ($1, $2)
+  RETURNING sid
+  `;
+  return db.query(INSERT_SESSIONS, [sid, email])
+  .then((result) => {
+    console.log(result.rows[0].sid);
+  });  
+   
+}
+
+module.exports = { getAllRecommendations, getUser, addNewUser, createSession }
 

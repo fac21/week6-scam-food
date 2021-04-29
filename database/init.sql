@@ -15,8 +15,8 @@ CREATE TABLE  restaurants (
 );
 
 CREATE TABLE sessions (
-    id SERIAL PRIMARY KEY, 
-    user_id INTEGER REFERENCES users(id)   
+    sid SERIAL PRIMARY KEY, 
+    email TEXT NOT NULL  
 );
 
 CREATE TABLE recommendations (
