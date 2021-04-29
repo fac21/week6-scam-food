@@ -8,9 +8,23 @@ function getAllRecommendations()  {
 
 }
 
+
+function getUser(email)  {
+  return db.query(`SELECT email, hashpassword FROM users WHERE email = '${email}';`)
+  .then((result) => result.rows)
+  .catch((error) => {
+      console.error(error);
+    });
+
+}
+
+
+
+
 function addNewUser(email, hashpassword, name){
   return db.query("INSERT INTO users(email, hashpassword, name) VALUES ($1, $2, $3)", [email, hashpassword, name])
 }
 
 
-module.exports = { getAllRecommendations, addNewUser }
+module.exports = { getAllRecommendations, getUser, addNewUser }
+
