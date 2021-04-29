@@ -8,6 +8,9 @@ function getAllRecommendations()  {
 
 }
 
+function addNewUser(email, hashpassword, name){
+  return db.query("INSERT INTO users(email, hashpassword, name) VALUES ($1, $2, $3)", [email, hashpassword, name])
+}
 
 
-module.exports = { getAllRecommendations }
+module.exports = { getAllRecommendations, addNewUser }
