@@ -8,24 +8,20 @@
 </head>
 <body>
     <main>
-        
-            <label for="username">
-                Username
+        <form method="POST">
+            <label for="restaurant">
+                Restaurant Name
+                <span aria-hidden="true">*</span>
             </label>
-            <input type="text" name="username" id="username">
-            <label for="email">
-                Email
+            <input type="text" name="restaurant" id="restaurant" required>
+            <label for="recommendation">
+                Recommendation (Comment)
+                <span aria-hidden="true">*</span>
             </label>
-            <input name="email" id="email" type="email">
-            <label for="password">
-                Password
-            </label>
-            <input name="password" id="password" type="password">
+            <input name="recommendation" id="recommendation" type="text" required>
             <button>
                 Submit
             </button>
-
-
         </form>
     </main>
 </body>

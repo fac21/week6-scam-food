@@ -4,11 +4,9 @@ const model = require("../../database/model")
 function getRecommendationPage(request, response){
   model.getAllRecommendations()
   .then((result) => { 
-      console.log(result)
       return recommendationList = result.map((result) => `<ul><li>${result.name}</li><li>${result.recommendations}</li></ul>`).join(""); 
   })
   .then((result) => {
-    console.log(result)
     let mainContent = `
       ${result}
     `
