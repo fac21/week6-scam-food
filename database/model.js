@@ -11,11 +11,8 @@ function getAllRecommendations()  {
 
 function getUser(email)  {
   return db.query(`SELECT email, hashpassword FROM users WHERE email = '${email}';`)
-  .then((result) => result.rows)
-  .catch((error) => {
-      console.error(error);
-    });
-
+  .then((result) => result.rows);
+  
 }
 
 function addNewUser(email, hashpassword, name){

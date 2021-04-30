@@ -35,12 +35,12 @@ function getSignUp(request, response){
 
 function post(request, response){
     console.log(request.body);
-    const username = request.body.username;
+    const name = request.body.username;
     const email = request.body.email;
     const password = request.body.password;
     bcrypt.hash(password, 10)
     .then((hashpassword) =>
-        model.addNewUser(email, hashpassword, username))
+        model.addNewUser(email, hashpassword, name))
     .then(() => {
         response.redirect("/log-in")
     })

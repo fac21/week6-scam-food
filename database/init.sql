@@ -15,7 +15,7 @@ CREATE TABLE  restaurants (
 );
 
 CREATE TABLE sessions (
-    sid SERIAL PRIMARY KEY, 
+    sid TEXT PRIMARY KEY, 
     email TEXT NOT NULL  
 );
 

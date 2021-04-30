@@ -2,6 +2,7 @@ const html = require("../components/html")
 const model = require("../../database/model");
 const crypto = require("crypto");
 const bcrypt = require("bcryptjs");
+const { response } = require("express");
 
 
 function getLogin(request, response){
@@ -28,13 +29,17 @@ function getLogin(request, response){
 
 function saveUserSession(user){
     const sid = crypto.randomBytes(18).toString("base64");
-    console.log(user);
     return model.createSession(sid, user.email )
 }
 
 
 function verifyUser(email, password) {
-  return model.getUser(email)
+   return model.getUser(email)
+  .catch((error) => {
+    console.error(error)
+    response.redirect("/error")
+    response.send(`<h1>There is an error</h1>`);
+  })
     .then((user) => {
         return bcrypt.compare(password, user[0].hashpassword)
     .then((match) => {
@@ -58,13 +63,16 @@ function logIn(request, response) {
         //response.send(`<p>This ${email} does not have an account. Sign up please.</a></p>`)
         //} else {
             verifyUser(email, password)
-            .then(saveUserSession)
+            .then((result) => {
+                saveUserSession(result)
+            })
             .then((sid) => {
-            response.cookie("sid", sid, {
+                console.log(sid);
+                response.cookie("sid", sid, {
                 httpOnly: true,
-                maxAge: 60,
-                signed: true,
-                });
+                maxAge: 60
+                })
+            response.redirect("/");
             })      
         }
  
